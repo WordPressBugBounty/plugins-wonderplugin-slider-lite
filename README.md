@@ -1,0 +1,1 @@
+# plugins-wonderplugin-slider-lite
