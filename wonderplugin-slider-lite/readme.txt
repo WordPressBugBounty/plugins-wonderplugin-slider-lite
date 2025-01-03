@@ -1,9 +1,9 @@
 === Wonder Slider Lite ===
 Contributors: wonderplugin
-Tags: slider, slideshow, responsive slider, responsive slideshow, image slider, image slideshow, video slider, video slideshow, YouTube slider, YouTube slideshow, YouTube gallery, Vimeo slider, Vimeo slideshow, Vimeo gallery, post slider, post slideshow, post gallery, lightbox gallery, full width slider, full width slideshow
+Tags: image slider, video slider, YouTube slider, image slideshow, video slideshow
 Donate link: https://www.wonderplugin.com/order/?ref=lite
 Requires at least: 3.6
-Tested up to: 6.4.2
+Tested up to: 6.7.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
