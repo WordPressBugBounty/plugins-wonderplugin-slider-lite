@@ -345,7 +345,7 @@ class WonderPlugin_Slider_Model {
 	}
 
 	function print_slider_options() {
-		echo '<script>window.WonderSliderOptions = {jsfolder: "' . WONDERPLUGIN_SLIDER_URL . 'engine/"};</script>';
+		echo '<script>window.WonderSliderOptions = {jsfolder:"' . WONDERPLUGIN_SLIDER_URL . 'engine/"};</script>';
 	}
 
 	function generate_body_code($id, $has_wrapper, $atts) {

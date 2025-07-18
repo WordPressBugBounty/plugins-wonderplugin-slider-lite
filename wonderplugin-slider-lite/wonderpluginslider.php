@@ -3,7 +3,7 @@
 Plugin Name: Wonder Slider Lite
 Plugin URI: https://www.wonderplugin.com/wordpress-slider/
 Description: WordPress Image and Video Slider Plugin
-Version: 14.4
+Version: 14.5
 Author: Magic Hills Pty Ltd
 Author URI: https://www.wonderplugin.com/
 License: Copyright 2018 Magic Hills Pty Ltd, All Rights Reserved
@@ -15,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) )
 if (defined('WONDERPLUGIN_SLIDER_VERSION'))
 	return;
 
-define('WONDERPLUGIN_SLIDER_VERSION', '14.4');
+define('WONDERPLUGIN_SLIDER_VERSION', '14.5');
 define('WONDERPLUGIN_SLIDER_URL', plugin_dir_url( __FILE__ ));
 define('WONDERPLUGIN_SLIDER_PATH', plugin_dir_path( __FILE__ ));
 define('WONDERPLUGIN_SLIDER_PLUGIN', basename(dirname(__FILE__)) . '/' . basename(__FILE__));
-define('WONDERPLUGIN_SLIDER_PLUGIN_VERSION', '14.4');
+define('WONDERPLUGIN_SLIDER_PLUGIN_VERSION', '14.5');
 
 require_once 'app/class-wonderplugin-slider-controller.php';
 

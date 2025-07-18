@@ -1,7 +1,7 @@
 /** Wonderplugin Slider Lite
  * Copyright 2025 Magic Hills Pty Ltd All Rights Reserved
  * Website: http://www.wonderplugin.com
- * Version 14.4 
+ * Version 14.5 
  */
 (function($){$(document).ready(function(){$(".wonderplugin-select-mediaimage").click(function(){var textId=$(this).data("textid");var displayId=$(this).data("displayid");var inputName=$(this).data("inputname");var media_uploader=wp.media.frames.file_frame=wp.media({title:"Select Image",library:{type:"image"},button:{text:"Select Image"},multiple:false});media_uploader.on("select",function(event){var selection=media_uploader.state().get("selection");var attachment=selection.first().toJSON();if(attachment.type==
 "image"){$("#"+textId).val(attachment.url);if($("input:radio[name="+inputName+"]:checked").val()=="custom")$("#"+displayId).attr("src",attachment.url)}});media_uploader.open()});$(document).on("click",".wonderplugin-dialog-tab-button",function(){if($(this).hasClass("wonderplugin-dialog-tab-button-selected"))return;var index=$(this).index();$(this).closest(".wonderplugin-dialog-tab-buttons").find("li").removeClass("wonderplugin-dialog-tab-button-selected");$(this).addClass("wonderplugin-dialog-tab-button-selected");

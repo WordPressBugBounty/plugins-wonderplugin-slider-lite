@@ -88,6 +88,9 @@ You can upgrade to the Pro Version at [https://www.wonderplugin.com/order/?produ
 
 == Changelog ==
 
+= 14.5 =
+* Fixed bug sanitizing HTML in image titles, descriptions, and alt text
+
 = 14.4 =
 * Sanitizing HTML in image titles, descriptions, and alt text
 
