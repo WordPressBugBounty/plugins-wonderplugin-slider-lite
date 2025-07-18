@@ -646,3 +646,7 @@ li.wonderplugin-dialog-tab-panel.wonderplugin-dialog-tab-panel-selected {
 	text-align: right;
 	margin-top: 8px;
 }
+
+.table-global-settings td {
+	vertical-align: middle;
+}

@@ -3,7 +3,7 @@ Contributors: wonderplugin
 Tags: image slider, video slider, YouTube slider, image slideshow, video slideshow
 Donate link: https://www.wonderplugin.com/order/?ref=lite
 Requires at least: 3.6
-Tested up to: 6.7.1
+Tested up to: 6.8.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -87,6 +87,9 @@ You can upgrade to the Pro Version at [https://www.wonderplugin.com/order/?produ
 3. Lightbox gallery example
 
 == Changelog ==
+
+= 14.4 =
+* Sanitizing HTML in image titles, descriptions, and alt text
 
 = 14.0 =
 * Fix a compatibility issue with PHP 8.2

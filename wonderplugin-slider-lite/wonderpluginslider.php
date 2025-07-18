@@ -3,7 +3,7 @@
 Plugin Name: Wonder Slider Lite
 Plugin URI: https://www.wonderplugin.com/wordpress-slider/
 Description: WordPress Image and Video Slider Plugin
-Version: 14.0
+Version: 14.4
 Author: Magic Hills Pty Ltd
 Author URI: https://www.wonderplugin.com/
 License: Copyright 2018 Magic Hills Pty Ltd, All Rights Reserved
@@ -15,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) )
 if (defined('WONDERPLUGIN_SLIDER_VERSION'))
 	return;
 
-define('WONDERPLUGIN_SLIDER_VERSION', '14.0');
+define('WONDERPLUGIN_SLIDER_VERSION', '14.4');
 define('WONDERPLUGIN_SLIDER_URL', plugin_dir_url( __FILE__ ));
 define('WONDERPLUGIN_SLIDER_PATH', plugin_dir_path( __FILE__ ));
 define('WONDERPLUGIN_SLIDER_PLUGIN', basename(dirname(__FILE__)) . '/' . basename(__FILE__));
-define('WONDERPLUGIN_SLIDER_PLUGIN_VERSION', '14.0');
+define('WONDERPLUGIN_SLIDER_PLUGIN_VERSION', '14.4');
 
 require_once 'app/class-wonderplugin-slider-controller.php';
 
@@ -41,6 +41,7 @@ class WonderPlugin_Slider_Plugin {
 		
 		add_shortcode( 'wonderplugin_slider', array($this, 'shortcode_handler') );
 		
+		add_action( 'wp_footer', array($this, 'print_slider_options') );
 		add_action( 'init', array($this, 'register_script') );
 		add_action( 'wp_enqueue_scripts', array($this, 'enqueue_script') );
 		add_action( 'rest_api_init', array( $this, 'rest_api' ) );
@@ -48,6 +49,7 @@ class WonderPlugin_Slider_Plugin {
 		if ( is_admin() )
 		{
 			add_action( 'wp_ajax_wonderplugin_slider_save_config', array($this, 'wp_ajax_save_item') );
+			add_action( 'admin_footer', array($this, 'print_slider_options') );
 			add_action( 'admin_init', array($this, 'admin_init_hook') );
 			add_action( 'admin_post_wonderplugin_slider_export', array($this, 'export_sliders') );
 
@@ -315,6 +317,11 @@ class WonderPlugin_Slider_Plugin {
 		$this->wonderplugin_slider_controller->edit_item();
 	}
 	
+	function print_slider_options()
+	{
+		$this->wonderplugin_slider_controller->print_slider_options();
+	} 
+
 	function edit_settings() {
 	
 		$this->wonderplugin_slider_controller->edit_settings();

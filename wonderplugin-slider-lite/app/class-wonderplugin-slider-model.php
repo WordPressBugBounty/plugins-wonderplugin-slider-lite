@@ -7,7 +7,7 @@ require_once 'wonderplugin-slider-functions.php';
 
 class WonderPlugin_Slider_Model {
 
-	public $controller, $multilingual;
+	public $controller, $multilingual, $multilingualsys, $defaultlang, $currentlang;
 	
 	function __construct($controller) {
 		
@@ -344,6 +344,10 @@ class WonderPlugin_Slider_Model {
 		return str_replace('"', '\"', $str);
 	}
 
+	function print_slider_options() {
+		echo '<script>window.WonderSliderOptions = {jsfolder: "' . WONDERPLUGIN_SLIDER_URL . 'engine/"};</script>';
+	}
+
 	function generate_body_code($id, $has_wrapper, $atts) {
 		
 		global $wpdb;
@@ -524,7 +528,7 @@ class WonderPlugin_Slider_Model {
 				$ret .= ' ' . stripslashes($data->dataoptions);
 			}
 			
-			$boolOptions = array('usejsforfullbrowserwidth', 'fullbrowserwidth', 'playmutedandinlinewhenautoplay', 'addextraattributes', 'autoplay', 'randomplay', 'loadimageondemand', 'transitiononfirstslide', 'autoplayvideo', 'isresponsive', 'fullwidth', 'isfullscreen', 'ratioresponsive', 'showtext', 'showtimer', 'showbottomshadow', 'navshowpreview', 'textautohide',
+			$boolOptions = array('usejsforfullbrowserwidth', 'fullbrowserwidth', 'playmutedandinlinewhenautoplay', 'playsinline', 'addextraattributes', 'autoplay', 'randomplay', 'loadimageondemand', 'transitiononfirstslide', 'autoplayvideo', 'isresponsive', 'fullwidth', 'isfullscreen', 'ratioresponsive', 'showtext', 'showtimer', 'showbottomshadow', 'navshowpreview', 'textautohide',
 					'pauseonmouseover', 'lightboxresponsive', 'lightboxshownavigation', 'lightboxshowtitle', 'lightboxshowdescription', 'texteffectresponsive', 'donotinit', 'addinitscript', 'lightboxfullscreenmode', 'lightboxcloseonoverlay', 'lightboxvideohidecontrols', 'lightboxnogroup',
 					'shownav', 'navthumbresponsive', 'navshowfeaturedarrow', 'inityoutube', 'initvimeo',
 					'navshowplaypause', 'navshowarrow', 'navshowbuttons',
@@ -1000,6 +1004,7 @@ class WonderPlugin_Slider_Model {
 		
 		if ($options->postcategory == -1)
 		{
+			$args = apply_filters( 'wonderplugin_slider_modify_post_args', $args );
 			$posts = wp_get_recent_posts($args);
 		}
 		else
@@ -1014,6 +1019,7 @@ class WonderPlugin_Slider_Model {
 				$args['orderby'] = $options->postorderby;
 			}
 				
+			$args = apply_filters( 'wonderplugin_slider_modify_post_args', $args );
 			$posts = get_posts($args);
 		}
 	
@@ -1152,7 +1158,9 @@ class WonderPlugin_Slider_Model {
 			
 			$items[] = (object) $post_item;
 		}
-	
+		
+		$items = apply_filters( 'wonderplugin_slider_modify_post_items', $items );
+
 		return $items;
 	}
 	
@@ -1268,7 +1276,7 @@ class WonderPlugin_Slider_Model {
 						'compare'   => '>='
 				);
 
-				$args['orderby'] = 'total_sales';
+				$args['orderby'] = array('total_sales' => 'DESC');
 			}
 
 			if (isset($options->metafeatured) && (strtolower($options->metafeatured) === 'true'))
@@ -1292,7 +1300,23 @@ class WonderPlugin_Slider_Model {
 		{
 			$args['post__in'] = array_merge( array( 0 ), wc_get_product_ids_on_sale() );
 		}
+		
+		if (isset($options->postorderby))
+		{
+			$orderbydir = isset($options->postorder) ? $options->postorder : 'DESC';
 
+			if (empty($args['orderby']))
+			{
+				$args['orderby'] = array($options->postorderby => $orderbydir);
+			}
+			else
+			{
+				$args['orderby'][$options->postorderby] = $orderbydir;
+			}
+		}
+
+		$args = apply_filters( 'wonderplugin_slider_modify_custom_post_args', $args );
+		
 		$query = new WP_Query($args);
 		if ($query->have_posts())
 		{
@@ -1384,8 +1408,13 @@ class WonderPlugin_Slider_Model {
 			wp_reset_postdata();
 		}
 
-		if (isset($options->postorder) && ($options->postorder == 'ASC'))
-			$items = array_reverse($items);
+		if (!isset($options->postorderby))
+		{
+			if (isset($options->postorder) && ($options->postorder == 'ASC'))
+				$items = array_reverse($items);
+		}
+
+		$items = apply_filters( 'wonderplugin_slider_modify_custom_post_items', $items );
 		
 		return $items;
 	}

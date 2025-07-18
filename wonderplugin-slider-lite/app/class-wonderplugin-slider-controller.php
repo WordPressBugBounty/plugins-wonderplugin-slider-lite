@@ -48,6 +48,11 @@ class WonderPlugin_Slider_Controller {
 		$this->view->print_edit_item();
 	}
 	
+	function print_slider_options()
+	{
+		return $this->model->print_slider_options();
+	}
+
 	function edit_settings()
 	{
 		$this->view->print_edit_settings();

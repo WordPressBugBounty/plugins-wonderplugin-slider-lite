@@ -186,6 +186,7 @@ class WonderPlugin_Slider_Creator {
 					<input type="button" class="button" id="wonderplugin-add-custompost" value="<?php _e( 'Add WooCommerce / Custom Post Type', 'wonderplugin_slider' ); ?>" />
 				</div>
 				<div class="wonderplugin-toolbar-options">	
+					<label class="wonderplugin-toolbar-label"><input type="button" class="button" id="wonderplugin-globalsettings" value="<?php _e( 'Batch Change', 'wonderplugin_slider' ); ?>" /></label>
 					<label class="wonderplugin-toolbar-label"><input type="button" class="button" id="wonderplugin-deleteall" value="<?php _e( 'Delete All', 'wonderplugin_slider' ); ?>" /></label>
 					<label class="wonderplugin-toolbar-label"><input type="button" class="button" id="wonderplugin-reverselist" value="<?php _e( 'Reverse List', 'wonderplugin_slider' ); ?>" /></label>
 					<label class="wonderplugin-toolbar-label"><input type="button" class="button" id="wonderplugin-updatevimeothumb" value="<?php _e( 'Update Vimeo Thumbs', 'wonderplugin_slider' ); ?>" /></label>
@@ -295,7 +296,8 @@ class WonderPlugin_Slider_Creator {
 									<td><label><input name='wonderplugin-slider-autoplayvideo' type='checkbox' id='wonderplugin-slider-autoplayvideo' value='' /> Auto play video</label>
 									<p style="font-style:italic;"> * Video autoplay on page load will not work unless the video is muted; On iOS, the playsinline attribute also needs to be enabled.</p>
 									<p><label><input name='wonderplugin-slider-playmutedandinlinewhenautoplay' type='checkbox' id='wonderplugin-slider-playmutedandinlinewhenautoplay' value='' /> Mute video and add playsinline attribute when autoplay on page load</label></p>
-									</td>
+									<p><label><input name='wonderplugin-slider-playsinline' type='checkbox' id='wonderplugin-slider-playsinline' value='' /> Add playsinline attribute to HTML5 video</label></p>
+								</td>
 								</tr>
 								<tr>
 									<th>Responsive</th>
